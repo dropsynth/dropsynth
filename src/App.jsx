@@ -256,7 +256,7 @@ export default function App() {
       <footer style={{borderTop:`1px solid ${C.border}`,padding:`24px ${px}`,display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:12}}>
         <div className="mono" style={{fontSize:14,fontWeight:700}}>Drop<span style={{color:C.accent}}>Synth</span></div>
         <div style={{fontSize:11,color:C.dim}}>© 2026 DropSynth</div>
-        <div style={{display:"flex",gap:20}}><a href="/privacy.html" style={{fontSize:12,color:C.muted,textDecoration:"none"}}>Privacy</a><a href="mailto:hello@dropsynth.io" style={{fontSize:12,color:C.muted,textDecoration:"none"}}>Contact</a></div>
+        <div style={{display:"flex",gap:20}}><a href="/privacy.html" style={{fontSize:12,color:C.muted,textDecoration:"none"}}>Privacy</a><a href="mailto:hello@dropsynth.app" style={{fontSize:12,color:C.muted,textDecoration:"none"}}>Contact</a></div>
       </footer>
     </div>
   );
