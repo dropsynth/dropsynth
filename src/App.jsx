@@ -64,15 +64,28 @@ const TICKS = ["Bio-hacking ↑38%","Smart Home ↑29%","Pet Wellness ↑31%","E
 
 // ─── TRENDING LEADERBOARD DATA ────────────────────────────
 const TRENDING = [
-  { rank:1, locked:true },
-  { rank:2, locked:true },
-  { rank:3, locked:true },
-  { rank:4, locked:true },
-  { rank:5, locked:true },
-  { rank:6, locked:false, name:"Magnetic Phone Car Mount",  sales:"4.1K", bars:4 },
-  { rank:7, locked:false, name:"Silicone Baby Bibs 3-Pack", sales:"3.7K", bars:3 },
-  { rank:8, locked:false, name:"Foam Roller Massage Set",   sales:"2.9K", bars:3 },
+  { rank:1, locked:true, trend:"+312%" },
+  { rank:2, locked:true, trend:"+268%" },
+  { rank:3, locked:true, trend:"+241%" },
+  { rank:4, locked:true, trend:"+199%" },
+  { rank:5, locked:true, trend:"+176%" },
+  { rank:6, locked:false, emoji:"📱", name:"Magnetic Phone Car Mount",  sales:"4.1K", bars:4, trend:"+154%" },
+  { rank:7, locked:false, emoji:"🍼", name:"Silicone Baby Bibs 3-Pack", sales:"3.7K", bars:3, trend:"+121%" },
+  { rank:8, locked:false, emoji:"💆", name:"Foam Roller Massage Set",   sales:"2.9K", bars:3, trend:"+97%" },
 ];
+
+// product thumb tile
+const Thumb = ({ emoji, locked }) => (
+  <div aria-hidden style={{
+    width:42,height:42,borderRadius:10,flexShrink:0,
+    display:"flex",alignItems:"center",justifyContent:"center",fontSize:21,
+    background:locked?`linear-gradient(135deg,${C.dim}33,${C.a2}14)`:`linear-gradient(135deg,${C.accent}14,${C.a2}1A)`,
+    border:`1px solid ${locked?C.border:`${C.accent}33`}`,
+    filter:locked?"saturate(0)":"none",
+  }}>
+    <span style={locked?{filter:"blur(3px)",opacity:.7}:undefined}>{locked?"?":emoji}</span>
+  </div>
+);
 
 const DEMO_LINES = [
   {t:"ok",  m:"Trend scan — bio-hack/glucose-patch ↑38% flagged"},
@@ -149,9 +162,9 @@ function LiveDemo() {
     <div style={{background:"#070A0E",border:`1px solid ${C.border}`,borderRadius:12,padding:18,fontFamily:"'Space Mono',monospace",fontSize:11,lineHeight:1.8,overflow:"hidden"}}>
       <div style={{fontSize:9,color:C.dim,letterSpacing:"0.2em",marginBottom:12,textTransform:"uppercase"}}>DROPSYNTH · LIVE OPS FEED</div>
       {lines.map((l,i)=>(
-        <div key={i} style={{display:"flex",gap:10,alignItems:"flex-start",opacity:i===lines.length-1?1:0.45+(i/lines.length)*0.45}}>
+        <div key={i} style={{display:"flex",gap:10,alignItems:"baseline",minWidth:0,opacity:i===lines.length-1?1:0.45+(i/lines.length)*0.45}}>
           <span style={{color:col[l.t]||C.muted,flexShrink:0,width:38,fontSize:9,textTransform:"uppercase",letterSpacing:"0.08em"}}>{lbl[l.t]}</span>
-          <span style={{color:l.t==="ok"?C.text:C.muted}}>{l.m}</span>
+          <span style={{color:l.t==="ok"?C.text:C.muted,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",flex:1,minWidth:0}}>{l.m}</span>
         </div>
       ))}
       <div style={{display:"flex",gap:8,alignItems:"center",marginTop:6,borderTop:`1px solid ${C.border}`,paddingTop:8}}>
@@ -355,15 +368,17 @@ export default function App() {
                     background:item.rank<=3?`${C.warn}22`:`${C.dim}55`,
                     color:item.rank<=3?C.warn:C.muted,
                   }}>#{item.rank}</span>
-                  {!item.locked && <SignalBars bars={item.bars}/>}
+                  <span className="mono" style={{fontSize:10,fontWeight:700,color:C.accent,background:`${C.accent}14`,padding:"2px 7px",borderRadius:20}}>▲ {item.trend}</span>
                 </div>
 
                 {item.locked ? (
                   <>
-                    <div style={{filter:"blur(7px)",pointerEvents:"none",userSelect:"none"}}>
-                      <div style={{height:13,background:C.dim,borderRadius:4,marginBottom:6,width:"88%"}}/>
-                      <div style={{height:10,background:C.dim,borderRadius:4,marginBottom:4,width:"55%"}}/>
-                      <div style={{fontSize:10,color:C.muted}}>0.0K sales this week</div>
+                    <div style={{display:"flex",gap:10,alignItems:"center",pointerEvents:"none",userSelect:"none"}}>
+                      <Thumb locked/>
+                      <div style={{flex:1,filter:"blur(7px)"}}>
+                        <div style={{height:13,background:C.dim,borderRadius:4,marginBottom:6,width:"88%"}}/>
+                        <div style={{height:10,background:C.dim,borderRadius:4,width:"55%"}}/>
+                      </div>
                     </div>
                     <div style={{
                       position:"absolute",inset:0,
@@ -381,13 +396,17 @@ export default function App() {
                     </div>
                   </>
                 ) : (
-                  <>
-                    <div style={{fontSize:13,fontWeight:600,lineHeight:1.4,marginBottom:6}}>{item.name}</div>
-                    <div style={{display:"flex",alignItems:"center",gap:5}}>
-                      <span style={{fontSize:12,color:C.accent,fontWeight:700}}>{item.sales}</span>
-                      <span style={{fontSize:11,color:C.muted}}>sales this week</span>
+                  <div style={{display:"flex",gap:10,alignItems:"center"}}>
+                    <Thumb emoji={item.emoji}/>
+                    <div style={{flex:1,minWidth:0}}>
+                      <div style={{fontSize:13,fontWeight:600,lineHeight:1.35,marginBottom:5}}>{item.name}</div>
+                      <div style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>
+                        <span style={{fontSize:12,color:C.accent,fontWeight:700}}>{item.sales}</span>
+                        <span style={{fontSize:11,color:C.muted}}>sales this week</span>
+                        <SignalBars bars={item.bars}/>
+                      </div>
                     </div>
-                  </>
+                  </div>
                 )}
               </div>
             ))}
