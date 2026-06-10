@@ -99,10 +99,10 @@ function Btn({ children, onClick, variant="primary", disabled, full, size="md", 
     outline:{background:"transparent",color:C.text,border:`1px solid ${C.border}`,fontWeight:500},
   }[variant];
   return (
-    <button onClick={disabled?undefined:onClick} disabled={disabled} style={{
+    <button className="hv-btn" onClick={disabled?undefined:onClick} disabled={disabled} style={{
       ...sz,...v,display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7,
       borderRadius:8,cursor:disabled?"not-allowed":"pointer",opacity:disabled?.5:1,
-      fontFamily:"'Space Grotesk',sans-serif",width:full?"100%":"auto",transition:"all .18s",...style,
+      fontFamily:"'Space Grotesk',sans-serif",width:full?"100%":"auto",...style,
     }}>{children}</button>
   );
 }
@@ -122,7 +122,7 @@ function SignalBars({ bars=3, max=5 }) {
 function Ticker() {
   const items = [...TICKS,...TICKS];
   return (
-    <div style={{overflow:"hidden",background:"#0C0F16",borderBottom:`1px solid ${C.border}`,padding:"7px 0"}}>
+    <div className="hv-ticker" style={{overflow:"hidden",background:"#0C0F16",borderBottom:`1px solid ${C.border}`,padding:"7px 0"}}>
       <div className="mono" style={{display:"inline-block",whiteSpace:"nowrap",animation:"ticker 26s linear infinite",fontSize:10,letterSpacing:"0.1em",textTransform:"uppercase"}}>
         {items.map((it,i)=>(
           <span key={i}><span style={{color:C.dim}}>◆ </span><span style={{color:C.accent}}>{it}</span><span style={{color:C.dim}}>{"　　"}</span></span>
@@ -270,13 +270,11 @@ export default function App() {
 
       {/* NAV */}
       <nav style={{position:"sticky",top:0,zIndex:100,background:"rgba(9,11,15,.92)",backdropFilter:"blur(14px)",borderBottom:`1px solid ${C.border}`,padding:`0 ${px}`,height:54,display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-        <div className="mono" style={{fontSize:16,fontWeight:700}}>Drop<span style={{color:C.accent}}>Synth</span></div>
+        <div className="mono hv-logo" style={{fontSize:16,fontWeight:700}}>Drop<span style={{color:C.accent}}>Synth</span></div>
         <div style={{display:"flex",alignItems:"center",gap:mob?12:28}}>
           {!mob && ["Features","Pricing","FAQ"].map(l=>(
-            <span key={l} onClick={()=>smoothScroll(l.toLowerCase())}
+            <span key={l} className="hv-link" onClick={()=>smoothScroll(l.toLowerCase())}
               style={{fontSize:13,color:C.muted,fontWeight:500,cursor:"pointer"}}
-              onMouseEnter={e=>e.target.style.color=C.text}
-              onMouseLeave={e=>e.target.style.color=C.muted}
             >{l}</span>
           ))}
           <Btn size="sm" onClick={()=>openModal("pro")}>Join waitlist</Btn>
@@ -322,8 +320,8 @@ export default function App() {
             <LiveDemo/>
             <div style={{marginTop:12,display:"grid",gridTemplateColumns:"1fr 1fr",gap:2,borderRadius:10,overflow:"hidden",border:`1px solid ${C.border}`}}>
               {[["40M+","products scanned daily"],["20h","saved per week"],["34%","avg store margin"],["300+","suppliers connected"]].map(([v,l])=>(
-                <div key={l} style={{background:C.card,padding:"12px 14px",textAlign:"center"}}>
-                  <div className="mono" style={{fontSize:18,fontWeight:700,color:C.accent}}>{v}</div>
+                <div key={l} className="hv-stat" style={{background:C.card,padding:"12px 14px",textAlign:"center"}}>
+                  <div className="mono statv" style={{fontSize:18,fontWeight:700,color:C.accent}}>{v}</div>
                   <div style={{fontSize:10,color:C.muted,marginTop:3}}>{l}</div>
                 </div>
               ))}
@@ -347,7 +345,7 @@ export default function App() {
 
           <div style={{display:"grid",gridTemplateColumns:mob?"1fr 1fr":"repeat(4,1fr)",gap:10}}>
             {TRENDING.map(item=>(
-              <div key={item.rank} style={{
+              <div key={item.rank} className="hv-card" style={{
                 background:C.card,border:`1px solid ${C.border}`,borderRadius:12,
                 padding:"16px 14px",position:"relative",overflow:"hidden",minHeight:110,
               }}>
@@ -373,7 +371,7 @@ export default function App() {
                       display:"flex",flexDirection:"column",alignItems:"center",
                       justifyContent:"flex-end",padding:"12px 10px",textAlign:"center",
                     }}>
-                      <div style={{fontSize:15,marginBottom:3}}>🔒</div>
+                      <div style={{fontSize:15,marginBottom:3}}><span className="hv-lock">🔒</span></div>
                       <div style={{fontSize:10,color:C.muted,lineHeight:1.5,marginBottom:9}}>
                         Sign up for free<br/>and unlock this product!
                       </div>
@@ -423,8 +421,8 @@ export default function App() {
               {icon:"🤖",title:"AI Support Bot",desc:"Deflects 40–60% of support tickets. Handles shipping, returns, and product questions 24/7."},
               {icon:"📊",title:"Analytics Dashboard",desc:"Margin by product, niche, and supplier. Trend alerts before competitors catch on."},
             ].map(f=>(
-              <div key={f.title} style={{background:C.card,border:`1px solid ${C.border}`,borderRadius:12,padding:"20px 18px"}}>
-                <div style={{fontSize:24,marginBottom:10}}>{f.icon}</div>
+              <div key={f.title} className="hv-card" style={{background:C.card,border:`1px solid ${C.border}`,borderRadius:12,padding:"20px 18px"}}>
+                <div style={{fontSize:24,marginBottom:10}}><span className="hv-icon">{f.icon}</span></div>
                 <div style={{fontSize:14,fontWeight:600,marginBottom:6}}>{f.title}</div>
                 <div style={{fontSize:13,color:C.muted,lineHeight:1.65}}>{f.desc}</div>
               </div>
@@ -452,7 +450,7 @@ export default function App() {
             {PLANS.map(plan=>{
               const price = billing==="annual" ? Math.round(plan.price*.8) : plan.price;
               return (
-                <div key={plan.id} style={{background:plan.highlight?`linear-gradient(145deg,${C.card},#181F30)`:C.card,border:`1px solid ${plan.highlight?C.accent:C.border}`,borderRadius:14,padding:mob?"24px 20px":"28px 24px",position:"relative",boxShadow:plan.highlight?`0 0 32px ${C.accent}18`:"none"}}>
+                <div key={plan.id} className="hv-card" style={{background:plan.highlight?`linear-gradient(145deg,${C.card},#181F30)`:C.card,border:`1px solid ${plan.highlight?C.accent:C.border}`,borderRadius:14,padding:mob?"24px 20px":"28px 24px",position:"relative",boxShadow:plan.highlight?`0 0 32px ${C.accent}18`:"none"}}>
                   {plan.highlight && <div style={{position:"absolute",top:-11,left:"50%",transform:"translateX(-50%)",background:C.accent,color:"#090B0F",fontSize:9,fontWeight:700,fontFamily:"'Space Mono',monospace",letterSpacing:"0.1em",padding:"3px 12px",borderRadius:20,textTransform:"uppercase",whiteSpace:"nowrap"}}>Most popular</div>}
                   <Tag color={plan.highlight?C.accent:C.a2}>{plan.tag}</Tag>
                   <div style={{fontSize:17,fontWeight:700,marginTop:12,marginBottom:4}}>{plan.name}</div>
@@ -482,7 +480,7 @@ export default function App() {
           </div>
           <div style={{display:"flex",flexDirection:"column",gap:2}}>
             {FAQS.map((faq,i)=>(
-              <div key={i} style={{background:C.card,borderRadius:10,overflow:"hidden",border:`1px solid ${openFaq===i?C.accent:C.border}`,transition:"border-color .2s"}}>
+              <div key={i} className="hv-faq" style={{background:C.card,borderRadius:10,overflow:"hidden",border:`1px solid ${openFaq===i?C.accent:C.border}`}}>
                 <button onClick={()=>setOpenFaq(openFaq===i?null:i)} style={{width:"100%",padding:"16px 18px",background:"none",border:"none",display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer",color:C.text,fontSize:mob?13:14,fontWeight:600,fontFamily:"'Space Grotesk',sans-serif",textAlign:"left",gap:12}}>
                   <span>{faq.q}</span>
                   <span style={{color:C.muted,fontSize:20,flexShrink:0,transform:openFaq===i?"rotate(45deg)":"none",transition:"transform .2s"}}>+</span>
@@ -511,11 +509,11 @@ export default function App() {
 
       {/* FOOTER */}
       <footer style={{borderTop:`1px solid ${C.border}`,padding:`24px ${px}`,display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:12}}>
-        <div className="mono" style={{fontSize:14,fontWeight:700}}>Drop<span style={{color:C.accent}}>Synth</span></div>
+        <div className="mono hv-logo" style={{fontSize:14,fontWeight:700}}>Drop<span style={{color:C.accent}}>Synth</span></div>
         <div style={{fontSize:11,color:C.dim}}>© 2026 DropSynth</div>
         <div style={{display:"flex",gap:20}}>
-          <a href="/privacy.html" style={{fontSize:12,color:C.muted,textDecoration:"none"}}>Privacy</a>
-          <a href="mailto:hello@dropsynth.app" style={{fontSize:12,color:C.muted,textDecoration:"none"}}>Contact</a>
+          <a className="hv-link" href="/privacy.html" style={{fontSize:12,color:C.muted,textDecoration:"none"}}>Privacy</a>
+          <a className="hv-link" href="mailto:hello@dropsynth.app" style={{fontSize:12,color:C.muted,textDecoration:"none"}}>Contact</a>
         </div>
       </footer>
     </div>

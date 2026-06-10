@@ -15,4 +15,38 @@ body { background: #090B0F; color: #ECF1FA; font-family: 'Space Grotesk', sans-s
 .fadeUp { animation: fadeUp .5s ease both; }
 .pulse { animation: pulse 2.4s ease-in-out infinite; }
 .blink { animation: blink 1s step-end infinite; }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; } }
+
+/* ── Hover micro-interactions ───────────────────────────── */
+.hv-btn { transition: transform .2s ease, filter .2s ease !important; }
+.hv-btn:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.12); }
+.hv-btn:active:not(:disabled) { transform: translateY(0) scale(.97); }
+
+.hv-card { transition: transform .25s ease, box-shadow .25s ease; }
+.hv-card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(0,0,0,.5), 0 0 0 1px rgba(0,255,178,.35), 0 0 24px rgba(0,255,178,.07) !important; }
+
+.hv-stat { transition: background .25s ease; cursor: default; }
+.hv-stat:hover { background: #18202E !important; }
+.hv-stat .statv { display: inline-block; transition: transform .25s ease, text-shadow .25s ease; }
+.hv-stat:hover .statv { transform: scale(1.12); text-shadow: 0 0 16px rgba(0,255,178,.5); }
+
+.hv-link { position: relative; transition: color .2s ease; }
+.hv-link::after { content:""; position:absolute; left:0; bottom:-3px; width:100%; height:1px; background:#00FFB2; transform:scaleX(0); transform-origin:right; transition:transform .25s ease; }
+.hv-link:hover { color:#ECF1FA !important; }
+.hv-link:hover::after { transform:scaleX(1); transform-origin:left; }
+
+.hv-faq { transition: transform .2s ease, border-color .2s ease; }
+.hv-faq:hover { transform: translateX(4px); }
+
+.hv-ticker > .mono:hover { animation-play-state: paused; }
+
+.hv-lock { display:inline-block; transition: transform .25s ease; }
+.hv-card:hover .hv-lock { transform: rotate(-12deg) scale(1.2); }
+
+.hv-icon { display:inline-block; transition: transform .25s ease; }
+.hv-card:hover .hv-icon { transform: translateY(-3px) scale(1.12); }
+
+.hv-logo { cursor: default; }
+.hv-logo span { transition: text-shadow .25s ease; }
+.hv-logo:hover span { text-shadow: 0 0 14px rgba(0,255,178,.55); }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
