@@ -140,19 +140,57 @@ const MacDots = ({ label, labelColor }) => (
   </div>
 );
 
+// the terminal prints this Monday's actual top-5: #1 open, #2–#5 redacted
+const TERM_ROWS = [
+  { rank:1, label:"gps pet tracker collar", score:16, open:true },
+  { rank:2, label:"█".repeat(19), score:16 },
+  { rank:3, label:"█".repeat(16), score:16 },
+  { rank:4, label:"█".repeat(21), score:15 },
+  { rank:5, label:"█".repeat(14), score:13 },
+];
+
 function HeroTerminal({ mob }) {
   return (
     <div className="hv-term" style={{
-      width:"100%",maxWidth:480,borderRadius:16,background:C.terminal,
+      width:"100%",maxWidth:560,borderRadius:16,background:C.terminal,
       border:`1px solid rgba(0,230,160,.25)`,boxShadow:`0 30px 60px ${inkA(.28)}`,
       transform:mob?"none":"perspective(1200px) rotateY(-6deg) rotateX(2deg)",
     }}>
       <MacDots label={`dropsynth board — ${BOARD.week}`}/>
-      <div className="mono" style={{display:"flex",flexDirection:"column",gap:12,padding:"22px 22px 26px",fontSize:mob?12:13,lineHeight:1.5,color:C.mint}}>
-        <span className="ds-type" style={{animationDelay:"400ms"}}>&gt; monday scan · 5 source types</span>
-        <span className="ds-type" style={{animationDelay:"1600ms"}}>&gt; rule: two independent signals</span>
-        <span className="ds-type" style={{animationDelay:"2800ms"}}>&gt; #1 gps pet tracker · 16/25</span>
-        <span style={{display:"flex",color:whiteA(.55)}}>&gt; board {BOARD.week} · compiled<span className="ds-cursor" style={{color:C.mint}}>_</span></span>
+      <div className="mono" style={{display:"flex",flexDirection:"column",gap:10,padding:mob?"18px 16px 22px":"22px 22px 26px",fontSize:mob?11.5:13,lineHeight:1.5,color:C.mint}}>
+        <span className="ds-type" style={{animationDelay:"300ms"}}>&gt; monday scan · 5 source types</span>
+        <span className="ds-type" style={{animationDelay:"1400ms"}}>&gt; scored 0–25 · two-signal rule</span>
+        <span className="ds-type" style={{animationDelay:"2500ms",color:whiteA(.55)}}>&gt; board {BOARD.week} · printing…</span>
+        <div style={{height:1,background:whiteA(.09),margin:"4px 0"}}/>
+        {TERM_ROWS.map((r,i)=>(
+          <div key={r.rank} className="ds-row" style={{display:"flex",gap:12,alignItems:"baseline",animationDelay:`${3400+i*160}ms`}}>
+            <span style={{width:26,flexShrink:0,color:r.open?C.mint:whiteA(.45)}}>#{r.rank}</span>
+            <span style={{flexGrow:1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:r.open?"#FFF4E9":whiteA(.3),letterSpacing:r.open?0:"-0.06em"}}>{r.label}</span>
+            <span style={{flexShrink:0,color:r.open?C.mint:whiteA(.45)}}>{r.score}/25</span>
+          </div>
+        ))}
+        <span className="ds-row" style={{display:"flex",color:whiteA(.55),animationDelay:"4300ms",marginTop:2}}>&gt; + five more · unlock free<span className="ds-cursor" style={{color:C.mint}}>_</span></span>
+      </div>
+    </div>
+  );
+}
+
+// real niches from this week's board
+const NICHES = ["PET TECH","BEAUTY","JEWELRY","SEASONAL HOME","TRAVEL GEAR","FITNESS","WELLNESS","SMART HOME","ROOM DECOR"];
+function NicheTicker() {
+  const items = [...NICHES, ...NICHES];
+  return (
+    <div style={{display:"flex",alignItems:"center",background:C.blush,borderTop:`1px solid ${inkA(.08)}`,borderBottom:`1px solid ${inkA(.08)}`}}>
+      <span className="mono" style={{flexShrink:0,padding:"10px 18px",fontSize:11,letterSpacing:"0.14em",fontWeight:700,borderRight:`1px solid ${inkA(.12)}`}}>ON THE BOARD THIS WEEK</span>
+      <div style={{overflow:"hidden",flexGrow:1,padding:"10px 0"}}>
+      <div className="ds-ticker mono" style={{fontSize:11,letterSpacing:"0.14em"}}>
+        {items.map((n,i)=>(
+          <span key={i} style={{color:inkA(.62)}}>
+            <span style={{color:C.ember}}>▲ </span>{n}
+            <span style={{color:inkA(.3)}}>{"  ·  "}</span>
+          </span>
+        ))}
+      </div>
       </div>
     </div>
   );
@@ -290,13 +328,13 @@ export default function App() {
         <div style={{position:"relative",display:"grid",gridTemplateColumns:mob?"1fr":"1fr 1fr",gap:mob?40:48,alignItems:"center",maxWidth:1296,margin:"0 auto"}}>
           <div style={{display:"flex",flexDirection:"column",alignItems:"flex-start",gap:mob?20:26}}>
             <div className="ds-rise" style={{animationDelay:"0ms"}}>
-              <Eyebrow>EU Trend Board · Next board Monday</Eyebrow>
+              <Eyebrow>EU Trend Board for online sellers</Eyebrow>
             </div>
-            <h1 className="display ds-rise" style={{fontSize:mob?40:68,fontWeight:800,lineHeight:1.04,letterSpacing:"-0.02em",animationDelay:"80ms"}}>
-              Ten EU products.{mob?" ":<br/>}Two signals each.
+            <h1 className="display ds-rise" style={{fontSize:mob?40:72,fontWeight:800,lineHeight:1.04,letterSpacing:"-0.02em",animationDelay:"80ms"}}>
+              Europe's rising products,{mob?" ":<br/>}ranked every Monday.
             </h1>
             <p className="ds-rise" style={{maxWidth:500,fontSize:mob?16:18,lineHeight:1.55,color:inkA(.78),animationDelay:"160ms"}}>
-              One automated scan every Monday. Scores margin, competition, and why each product is rising. EU demand, EU suppliers. US tools rank US winners you can't ship. Free during early access.
+              DropSynth is an automated product scout. Every Monday it reads supplier bestsellers, TikTok signals, and search trends, then ranks the ten fastest-rising products for EU stores — margin, competition, and the reason, on one board. Free during early access.
             </p>
             <div className="ds-rise" style={{display:"flex",alignItems:"center",gap:20,flexWrap:"wrap",animationDelay:"240ms"}}>
               <Btn size="lg" onClick={()=>smoothScroll("early-access")}>Get the full board</Btn>
@@ -308,6 +346,8 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      <NicheTicker/>
 
       {/* HOW IT WORKS */}
       <section id="how" style={{padding:`${mob?"56px":"96px"} ${px}`}}>
