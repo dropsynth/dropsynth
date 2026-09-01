@@ -1,52 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap');
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: auto; }
-body { background: #090B0F; color: #ECF1FA; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; max-width: 100vw; }
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #0F1219; }
-::-webkit-scrollbar-thumb { background: #1B2130; border-radius: 3px; }
-.mono { font-family: 'Space Mono', monospace; }
+body { background: #FFF4E9; color: #201812; font-family: 'Space Grotesk', 'Segoe UI', sans-serif; overflow-x: hidden; max-width: 100vw; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #FFE3C7; }
+::-webkit-scrollbar-thumb { background: #E2743B; border-radius: 3px; }
+.mono { font-family: 'Space Mono', 'Courier New', monospace; }
+.display { font-family: 'Bricolage Grotesque', 'Segoe UI', sans-serif; }
+:focus-visible { outline: 2px solid #E2743B; outline-offset: 2px; }
+
 @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes blink { 50% { opacity: 0; } }
-@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
 @keyframes spin { to { transform: rotate(360deg); } }
-@keyframes ticker { to { transform: translateX(-50%); } }
-@keyframes scanBar { 0% { transform: scaleX(0); transform-origin: left; opacity: 0; } 45% { transform: scaleX(1); transform-origin: left; opacity: 1; } 55% { transform: scaleX(1); transform-origin: right; opacity: 1; } 100% { transform: scaleX(0); transform-origin: right; opacity: 0; } }
+@keyframes drift1 { 0% { transform: translate(0,0); } 50% { transform: translate(26px,-18px); } 100% { transform: translate(0,0); } }
+@keyframes drift2 { 0% { transform: translate(0,0); } 50% { transform: translate(-20px,22px); } 100% { transform: translate(0,0); } }
+@keyframes typeLine { from { width: 0; } to { width: 100%; } }
+@keyframes blinkStep { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@keyframes riseIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
 .fadeUp { animation: fadeUp .5s ease both; }
-.pulse { animation: pulse 2.4s ease-in-out infinite; }
-.blink { animation: blink 1s step-end infinite; }
+.ds-rise { opacity: 0; animation: riseIn 500ms ease-out forwards; }
+.ds-blob-a { animation: drift1 22s ease-in-out infinite; }
+.ds-blob-b { animation: drift2 28s ease-in-out infinite; }
+.ds-type { display: block; overflow: hidden; white-space: pre; width: 0; animation: typeLine 1.1s steps(32, end) forwards; }
+.ds-cursor { animation: blinkStep 1s step-end infinite; }
+
+/* once-only scroll reveals (driven by IntersectionObserver in App.jsx) */
+.rv { opacity: 0; transform: translateY(12px); transition: opacity .3s ease-out, transform .3s ease-out; }
+.rv-in { opacity: 1; transform: translateY(0); }
 
 /* ── Hover micro-interactions ───────────────────────────── */
-.hv-btn { transition: transform .2s ease, filter .2s ease !important; }
-.hv-btn:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.12); }
+.hv-btn { transition: transform .2s ease, box-shadow .2s ease, filter .2s ease !important; }
+.hv-btn:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.06); box-shadow: 0 12px 28px rgba(226,116,59,.4) !important; }
 .hv-btn:active:not(:disabled) { transform: translateY(0) scale(.97); }
 
 .hv-card { transition: transform .25s ease, box-shadow .25s ease; }
-.hv-card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(0,0,0,.5), 0 0 0 1px rgba(0,255,178,.35), 0 0 24px rgba(0,255,178,.07) !important; }
+.hv-card:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(32,24,18,.14) !important; }
 
-.hv-stat { transition: background .25s ease; cursor: default; }
-.hv-stat:hover { background: #18202E !important; }
-.hv-stat .statv { display: inline-block; transition: transform .25s ease, text-shadow .25s ease; }
-.hv-stat:hover .statv { transform: scale(1.12); text-shadow: 0 0 16px rgba(0,255,178,.5); }
+.hv-term { transition: transform .35s ease; }
+.hv-term:hover { transform: perspective(1200px) rotateY(-2deg) rotateX(1deg) !important; }
 
-.hv-link { position: relative; transition: color .2s ease; }
-.hv-link::after { content:""; position:absolute; left:0; bottom:-3px; width:100%; height:1px; background:#00FFB2; transform:scaleX(0); transform-origin:right; transition:transform .25s ease; }
-.hv-link:hover { color:#ECF1FA !important; }
+.hv-link { position: relative; transition: color .2s ease; cursor: pointer; }
+.hv-link::after { content:""; position:absolute; left:0; bottom:-3px; width:100%; height:1px; background:#E2743B; transform:scaleX(0); transform-origin:right; transition:transform .25s ease; }
+.hv-link:hover { color:#201812 !important; }
 .hv-link:hover::after { transform:scaleX(1); transform-origin:left; }
 
 .hv-faq { transition: transform .2s ease, border-color .2s ease; }
 .hv-faq:hover { transform: translateX(4px); }
 
-.hv-ticker > .mono:hover { animation-play-state: paused; }
-
-.hv-lock { display:inline-block; transition: transform .25s ease; }
-.hv-card:hover .hv-lock { transform: rotate(-12deg) scale(1.2); }
-
-.hv-icon { display:inline-block; transition: transform .25s ease; }
-.hv-card:hover .hv-icon { transform: translateY(-3px) scale(1.12); }
-
-.hv-logo { cursor: default; }
-.hv-logo span { transition: text-shadow .25s ease; }
-.hv-logo:hover span { text-shadow: 0 0 14px rgba(0,255,178,.55); }
-
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .ds-rise { opacity: 1; }
+  .ds-type { width: auto; }
+  .rv { opacity: 1; transform: none; }
+}
