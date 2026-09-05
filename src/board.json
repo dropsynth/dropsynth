@@ -1,95 +1,95 @@
 {
-  "week": "2026-W36",
+  "week": "2026-W37",
   "top": {
     "rank": 1,
-    "name": "Bluetooth/GPS pet tracker collar",
-    "score": 16,
-    "signals": "TikTok #PetTracker tag has 90M+ views; 'dog GPS collar' shows ~$2.50 avg CPC, signaling high buyer intent · GPS tracker smart-dog-collar market forecast to grow from $0.72B (2026) to $1.64B by 2035, 9.4% CAGR",
-    "margin": "MARGIN 4/5 · COMPETITION 3/5",
-    "risk": "Cellular models need EU carrier/network compatibility and ongoing data plans — confusion here kills conversion.",
-    "angle": "Sell peace-of-mind: short-form video of live location alerts and geofence 'escape' footage."
+    "name": "Washing-machine microplastic filter",
+    "score": 21,
+    "signals": "Euronews (2026-07-06): EU moving to make washing-machine microplastic filters mandatory · EU's revised Drinking Water Directive sets first-ever binding microplastic limits; France (EUR2.7B) and Netherlands (EUR850M) funding filtration infra — market CAGR 8.1% 2025-2033",
+    "margin": "MARGIN 3/5 · COMPETITION 4/5",
+    "risk": "Branded incumbents (CLEANR, PlanetCare, Xeros) already own the category story; a generic unit needs real filtration proof or gets dismissed as a knockoff.",
+    "angle": "Sell as 'get ahead of the EU mandate' — cheap external filter unit + subscription replacement cartridges/pods for recurring revenue."
   },
   "rows": [
     {
       "rank": 2,
-      "name": "Short/minimalist press-on nail kits",
-      "niche": "beauty",
-      "score": 16,
-      "angle": "Lead with 'wear it tonight' comfort and short/minimalist EU-friendly shapes instead of competing on flashy 3D designs."
+      "name": "Toe spacers",
+      "niche": "foot wellness",
+      "score": 17,
+      "angle": "Frame as comfort/recovery for dancers and runners ('yoga for your feet'), not medical correction."
     },
     {
       "rank": 3,
-      "name": "Flat-back stud/hoop earring sets",
-      "niche": "jewelry",
-      "score": 16,
-      "angle": "Lead with the 'sleep comfortably in your earrings' hook; sell as matched sets for gifting."
+      "name": "Halloween projection lights",
+      "niche": "seasonal home decor",
+      "score": 15,
+      "angle": "Push plug-and-play projector displays now for DE/UK Halloween-party buyers; content angle is instant yard/window transformation."
     },
     {
       "rank": 4,
-      "name": "Battery-powered heated throw blanket",
-      "niche": "home / seasonal",
+      "name": "Waterproof dog raincoat + boot sets",
+      "niche": "pet / seasonal",
       "score": 15,
-      "angle": "Frame explicitly as an energy-bill saver ('heat yourself, not the room') for EU winter — the exact motive driving real demand."
+      "angle": "Bundle coat+boots as one 'wet-walk kit'; target dog-owner groups with autumn-rain content as clocks change."
     },
     {
       "rank": 5,
-      "name": "Portable garment steamer",
-      "niche": "home / travel gadget",
-      "score": 13,
-      "angle": "Position as a travel/small-apartment essential — no iron or board, wrinkle-free in 60 seconds — and demo on camera."
+      "name": "Autumn-themed pillow covers",
+      "niche": "home decor / seasonal",
+      "score": 15,
+      "angle": "Sell small-batch monthly print 'drops' so buyers return for the next design instead of a one-off purchase."
     },
     {
       "rank": 6,
-      "name": "Pull-up bar + resistance band home workout set",
-      "niche": "fitness",
-      "score": 13,
-      "angle": "Bundle bar + bands + a simple home-program PDF so it reads as a system, not a commodity part."
+      "name": "Laundry scent beads",
+      "niche": "home / consumable",
+      "score": 15,
+      "angle": "Reframe for EU laundry habits — 'wardrobe freshener' for line-dried clothes in small apartments, not a US dryer-sheet pitch."
     },
     {
       "rank": 7,
-      "name": "Sauna blanket (at-home wellness)",
-      "niche": "wellness / beauty tech",
+      "name": "Halloween pet costumes (generic, non-licensed)",
+      "niche": "pet / seasonal",
       "score": 12,
-      "angle": "Sell as an at-home spa/detox ritual with before/after sweat content, priced as a self-care gift."
+      "angle": "Stick to generic animal/food/pun costumes (no licensed characters) optimized for shareable 'dog in costume' clips; cross-sell with the raincoat kit."
     },
     {
       "rank": 8,
-      "name": "Portable espresso maker",
-      "niche": "travel / outdoor",
-      "score": 12,
-      "angle": "Target EU camping/hiking and van-life audiences with outdoor-brew demo content ahead of the autumn trip season."
+      "name": "Bluetooth item finder tags (keys/bags/luggage)",
+      "niche": "travel tech",
+      "score": 11,
+      "angle": "Target EU travelers ahead of autumn trip season; lead with 'never lose your bag again' airport-loss stories."
     },
     {
       "rank": 9,
-      "name": "4K AI mini security camera",
-      "niche": "smart home",
-      "score": 9,
-      "angle": "Only viable with clear GDPR-compliant data-storage messaging (EU servers) as the differentiator vs generic listings."
+      "name": "Felt bedside storage organizers",
+      "niche": "home organization / seasonal",
+      "score": 11,
+      "angle": "Bundle as a 'cozy nightstand kit' with the autumn pillow covers to lift average order value."
     },
     {
       "rank": 10,
-      "name": "Smart LED strip lights (music-sync)",
-      "niche": "home / room decor",
-      "score": 7,
-      "angle": "Only worth listing as an add-on/upsell to another order — don't build a standalone campaign around it."
+      "name": "LED smart curtain lights",
+      "niche": "home decor / smart lighting",
+      "score": 10,
+      "angle": "Differentiate hard on format (window-curtain drape) vs the already-saturated LED strip lights from last week's board."
     }
   ],
   "termRows": [
     {
       "rank": 1,
-      "label": "bluetooth/gps pet tracker ",
-      "score": 16,
+      "label": "washing-machine microplast",
+      "score": 21,
       "open": true
     },
     {
       "rank": 2,
-      "label": "██████████████████████",
-      "score": 16
+      "label": "████████████",
+      "score": 17
     },
     {
       "rank": 3,
       "label": "██████████████████████",
-      "score": 16
+      "score": 15
     },
     {
       "rank": 4,
@@ -98,18 +98,18 @@
     },
     {
       "rank": 5,
-      "label": "████████████████████",
-      "score": 13
+      "label": "██████████████████████",
+      "score": 15
     }
   ],
   "niches": [
-    "PET TECH",
-    "BEAUTY",
-    "JEWELRY",
+    "ECO HOME",
+    "FOOT WELLNESS",
+    "SEASONAL HOME DECOR",
+    "PET",
+    "HOME DECOR",
     "HOME",
-    "FITNESS",
-    "WELLNESS",
-    "TRAVEL",
-    "SMART HOME"
+    "TRAVEL TECH",
+    "HOME ORGANIZATION"
   ]
 }
