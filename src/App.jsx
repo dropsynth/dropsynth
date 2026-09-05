@@ -356,7 +356,7 @@ export default function App() {
             <div style={{borderRadius:20,background:"#FFD9B3",padding:mob?"26px 16px":"44px 48px"}}>
               <div style={{display:"flex",alignItems:"baseline",justifyContent:"space-between",gap:12,flexWrap:"wrap"}}>
                 <div style={{display:"flex",flexDirection:"column",gap:8}}>
-                  <h2 className="display" style={{fontSize:mob?28:36,fontWeight:700,letterSpacing:"-0.015em"}}>Board 01.</h2>
+                  <h2 className="display" style={{fontSize:mob?28:36,fontWeight:700,letterSpacing:"-0.015em"}}>Board {BOARD.week.slice(5)}.</h2>
                   <span className="mono" style={{fontSize:12,letterSpacing:"0.1em",color:inkA(.62)}}>GENERATED THIS MONDAY · {BOARD.week}</span>
                 </div>
                 {!mob && <span className="mono" style={{fontSize:12,letterSpacing:"0.1em",color:inkA(.62)}}>BOARD {BOARD.week} · MONDAYS</span>}
@@ -420,7 +420,7 @@ export default function App() {
                 {unlocked
                   ? <div className="fadeUp" style={{display:"flex",alignItems:"center",gap:14,flexWrap:"wrap",padding:"16px 18px",borderRadius:12,background:whiteA(.05),border:`1px solid rgba(0,230,160,.25)`}}>
                       <span style={{fontSize:15,color:C.paper}}>You're in. All ten rows are unlocked above.</span>
-                      <span className="mono" style={{marginLeft:"auto",fontSize:11,letterSpacing:"0.1em",color:C.mint}}>BOARD 01 UNLOCKED</span>
+                      <span className="mono" style={{marginLeft:"auto",fontSize:11,letterSpacing:"0.1em",color:C.mint}}>BOARD {BOARD.week.slice(5)} UNLOCKED</span>
                     </div>
                   : <WaitlistForm onSuccess={unlock}/>
                 }

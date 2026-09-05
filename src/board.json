@@ -77,7 +77,7 @@
   "termRows": [
     {
       "rank": 1,
-      "label": "washing-machine microplast",
+      "label": "washing-machine microplastic filter",
       "score": 21,
       "open": true
     },
@@ -107,8 +107,6 @@
     "FOOT WELLNESS",
     "SEASONAL HOME DECOR",
     "PET",
-    "HOME DECOR",
-    "HOME",
     "TRAVEL TECH",
     "HOME ORGANIZATION"
   ]

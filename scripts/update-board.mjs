@@ -36,12 +36,24 @@ const board = {
     rank: p.rank, name: p.name, niche: p.niche, score: p.total, angle: p.angle,
   })),
   termRows: [
-    { rank: 1, label: rank1.name.toLowerCase().slice(0, 26), score: rank1.total, open: true },
+    // full name — the terminal row's CSS ellipsis handles overflow
+    { rank: 1, label: rank1.name.toLowerCase(), score: rank1.total, open: true },
     ...byRank.filter(p => p.rank >= 2 && p.rank <= 5).map(p => ({
       rank: p.rank, label: "█".repeat(clamp(p.name.length - 4, 12, 22)), score: p.total,
     })),
   ],
-  niches: [...new Set(byRank.map(p => p.niche.split("/")[0].trim().toUpperCase()))],
+  // dedupe near-duplicates: drop a niche whose words are a subset of one already kept
+  // ("HOME" vs "ECO HOME", "HOME DECOR" vs "SEASONAL HOME DECOR")
+  niches: byRank
+    .map(p => p.niche.split("/")[0].trim().toUpperCase())
+    .reduce((kept, n) => {
+      const words = new Set(n.split(/\s+/));
+      const dup = kept.some(k => {
+        const kw = new Set(k.split(/\s+/));
+        return [...words].every(w => kw.has(w)) || [...kw].every(w => words.has(w));
+      });
+      return dup ? kept : [...kept, n];
+    }, []),
 };
 
 fs.writeFileSync(OUT, JSON.stringify(board, null, 2) + "\n");
