@@ -230,9 +230,9 @@ function WaitlistForm({ onSuccess }) {
 function BoardRow({ row, unlocked, mob }) {
   if (!unlocked && row.rank <= 5) {
     return (
-      <div style={{display:"flex",alignItems:"center",gap:mob?12:18,height:56,padding:mob?"0 14px":"0 22px",borderRadius:14,background:"rgba(255,244,233,.6)"}}>
+      <div aria-label={`Row #${row.rank} locked — join the list to unlock`} style={{display:"flex",alignItems:"center",gap:mob?12:18,height:56,padding:mob?"0 14px":"0 22px",borderRadius:14,background:"rgba(255,244,233,.6)"}}>
         <span className="mono" style={{fontWeight:700,fontSize:14,width:32,flexShrink:0}}>#{row.rank}</span>
-        <div style={{flexGrow:1,height:12,borderRadius:6,background:inkA(.14),filter:"blur(4px)",maxWidth:320}}/>
+        <div aria-hidden="true" style={{flexGrow:1,height:12,borderRadius:6,background:inkA(.14),filter:"blur(4px)",maxWidth:320}}/>
         <LockBadge/>
       </div>
     );
@@ -284,7 +284,7 @@ export default function App() {
         </div>
         <div style={{display:"flex",alignItems:"center",gap:mob?12:32}}>
           {!mob && [["How it works","how"],["The board","board"],["Early access","early-access"]].map(([l,id])=>(
-            <span key={id} className="hv-link" onClick={()=>smoothScroll(id)} style={{fontSize:14,color:inkA(.78),fontWeight:500}}>{l}</span>
+            <button key={id} type="button" className="hv-link" onClick={()=>smoothScroll(id)} style={{background:"none",border:"none",padding:0,font:"inherit",fontSize:14,color:inkA(.78),fontWeight:500,cursor:"pointer"}}>{l}</button>
           ))}
           <Btn size="sm" variant="ink" onClick={()=>smoothScroll("early-access")}>{mob?"Get the board":"Get the full board"}</Btn>
         </div>
@@ -292,9 +292,9 @@ export default function App() {
 
       {/* HERO */}
       <section style={{position:"relative",overflow:"hidden",background:`linear-gradient(165deg,#FFD3A8 0%,${C.apricot} 60%,#FFB87E 100%)`,padding:`${mob?"48px":"72px"} ${px} ${mob?"56px":"96px"}`}}>
-        <div className="ds-blob-a" style={{position:"absolute",top:-120,right:180,width:420,height:420,borderRadius:"50%",background:C.blush,filter:"blur(70px)",opacity:.9}}/>
-        <div className="ds-blob-b" style={{position:"absolute",bottom:-140,right:-80,width:380,height:380,borderRadius:"50%",background:C.ember,filter:"blur(80px)",opacity:.35}}/>
-        <div className="ds-blob-a" style={{position:"absolute",top:200,left:-140,width:320,height:320,borderRadius:"50%",background:C.blush,filter:"blur(60px)",opacity:.7}}/>
+        <div aria-hidden="true" className="ds-blob-a" style={{position:"absolute",top:-120,right:180,width:420,height:420,borderRadius:"50%",background:C.blush,filter:"blur(70px)",opacity:.9}}/>
+        <div aria-hidden="true" className="ds-blob-b" style={{position:"absolute",bottom:-140,right:-80,width:380,height:380,borderRadius:"50%",background:C.ember,filter:"blur(80px)",opacity:.35}}/>
+        <div aria-hidden="true" className="ds-blob-a" style={{position:"absolute",top:200,left:-140,width:320,height:320,borderRadius:"50%",background:C.blush,filter:"blur(60px)",opacity:.7}}/>
         {!mob && <>
           <div style={{position:"absolute",top:80,right:620,width:90,height:2,background:inkA(.35),transform:"rotate(-32deg)"}}/>
           <div style={{position:"absolute",top:420,right:90,width:60,height:2,background:inkA(.3),transform:"rotate(-32deg)"}}/>
@@ -464,7 +464,7 @@ export default function App() {
         <div style={{display:"flex",gap:mob?20:32,fontSize:14,color:whiteA(.65),alignItems:"center",flexWrap:"wrap"}}>
           <a href="/privacy.html" style={{color:whiteA(.65)}}>Privacy</a>
           <a href="mailto:hello@dropsynth.app" style={{color:whiteA(.65)}}>Contact</a>
-          <span onClick={()=>smoothScroll("early-access")} style={{color:C.mint,cursor:"pointer"}}>Get the full board</span>
+          <button type="button" onClick={()=>smoothScroll("early-access")} style={{background:"none",border:"none",padding:0,font:"inherit",color:C.mint,cursor:"pointer"}}>Get the full board</button>
         </div>
       </footer>
     </div>

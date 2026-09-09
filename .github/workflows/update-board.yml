@@ -4,6 +4,8 @@ on:
   schedule:
     # Mondays 06:15 UTC — after the research routine (05:30 UTC) has pushed the new board
     - cron: "15 6 * * 1"
+    # retry window — research routine's second Monday attempt (09:30) has landed by now
+    - cron: "0 13 * * 1"
   workflow_dispatch:
 
 permissions:
